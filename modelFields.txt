@@ -1,0 +1,17 @@
+Fields (model)
+inputDir	java.lang.String	"C:\Austria\WolfModel\Model\Input"	true	false
+mortRate	double	.76	true	true
+nextWolf	int	0	true	false
+newWolfRate	int	3	true	true
+newWolf	int	0	true	false
+step	int	1	true	false
+outputDir	java.lang.String	"C:\Austria\WolfModel\Model\Output"	true	false
+startingWolvesInAustria	int	0	true	true
+meanDailyDispersal	int	10000	true	true
+sdDailyDispersal	int	2000	true	true
+
+Field (wolf)
+alive	int	0	true	false
+foundMate	int	0	true	false
+establishPack	int	0	true	false
+sex	java.lang.String	male	true	false

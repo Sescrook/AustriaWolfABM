@@ -1,0 +1,61 @@
+def move():
+  if self.alive == 1:
+
+    hourlyMeanMovement = self.model.meanDailyDispersal/24
+    hourlySD = self.model.sdDailyDispersal/24
+
+    suitability = self.model.getRaster("aus_suitab")
+    for i in range(0, 167):
+      #choose hourly movement amount
+      Random.createNormal(hourlyMeanMovement, hourlySD)
+      xAmt = Random.normal.nextDouble()
+      #print xAmt + " x amount potential travel"
+      yAmt = Random.normal.nextDouble()
+      #print yAmt + " y amount potential travel"
+
+      #choose direction, negative or positive for x and y
+      xRnd = Random.uniform.nextIntFromTo(0,1)
+      yRnd = Random.uniform.nextIntFromTo(0,1)
+      if (xRnd == 0):
+        xAmt = -xAmt
+      if (yRnd == 0):
+        yAmt = -yAmt
+
+      #check suitability there
+      suitability = self.model.getRaster("aus_suitab")
+      coordinate = self.the_geom.coordinate
+      hypoX = coordinate.x + xAmt
+      hypoY = coordinate.y + yAmt
+      pointValue = suitability.getPixelValueAtMap(hypoX, hypoY, 0)
+      #print pointValue + " suitability at possible movement spot"
+
+      #wolf decides whether to move based on what the hypothetical move area is
+      #5% chance of moving to poor habitat
+      #50% chance of moving in marginal habitat
+      #95% chance of moving to good habitat
+      #50% change of moving out of bounds
+      #otherwise, no movement
+      if pointValue == 0:
+        random = Random.uniform.nextDoubleFromTo(0,1)
+        if random < .05:
+          coordinate.x = coordinate.x + xAmt
+          coordinate.y = coordinate.y + yAmt
+          #print "Against the odds, wolf moves to poor habitat"
+      if pointValue == 1:
+        random = Random.uniform.nextDoubleFromTo(0,1)
+        if random < .75:
+          coordinate.x = coordinate.x + xAmt
+          coordinate.y = coordinate.y + yAmt
+          #print "With 75% chance the wolf moves to marginal habitat"
+      if pointValue == 2:
+        random = Random.uniform.nextDoubleFromTo(0,1)
+        if random < .95:
+          coordinate.x = coordinate.x + xAmt
+          coordinate.y = coordinate.y + yAmt
+          #print "wolf finds good habitat and moves to it"
+      if pointValue == -1:
+        random = Random.uniform.nextDoubleFromTo(0,1)
+        if random < .5:
+          coordinate.x = coordinate.x + xAmt
+          coordinate.y = coordinate.y + yAmt
+          #print "Wolf is headed out of the study area, at a 50% chance"

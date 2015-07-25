@@ -1,0 +1,18 @@
+def die():
+  if self.alive == 1:
+
+    #convert annual mortality rate to biweekly rate
+    euler = 2.71828
+    exponent = -self.model.mortRate/26
+    probDeath = 1 - Math.pow(euler, exponent)
+
+    #print probDeath + " = Death probability at this tick for: " + self.name
+    draw = Random.uniform.nextDoubleFromTo(0,1)
+
+    #print draw + " = Random number from 0 to 1 drawn to determine death for " + self.name
+
+    if probDeath > draw:
+
+      #set wolf to 2 (or dead), it no longer moves.
+      self.alive = 2
+      print self.name + " dies"

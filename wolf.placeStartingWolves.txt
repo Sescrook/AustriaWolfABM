@@ -1,0 +1,47 @@
+def placeStartingWolves():
+
+  #places the specified number of wolves randomly somewhere in good habitat somewhere in the core of Austria (see initial box)
+  if self.model.startingWolvesInAustria > 0 and self.name == "wolf" + str(self.model.nextWolf):
+
+      #if so, self.alive set to 1, meaning the wolf comes alive
+      #print "...creating new wolf agent"
+      self.alive = 1
+
+      placementValue = 0.0
+      xStart = 0.0
+      yStart = 0.0
+
+      #while loop looks for suitable habitat to place starting wolf on
+      while placementValue != 2.0:
+        #austria bounds:
+        #x - 4284732.4766 to 4855305.767766 (used rounding toward the inside below)
+        #y - 2595725.9975 to 2889835.9414 (used rounding toward the inside below)
+        xStart = Random.uniform.nextDoubleFromTo(4284733.0, 4855305.0)
+        yStart = Random.uniform.nextDoubleFromTo(2595726.0, 2889835.0)
+        #print xStart, yStart + " potential coordinates: " + self.name
+
+        suitability = self.model.getRaster("aus_suitab")
+        pointValue = suitability.getPixelValueAtMap(xStart, yStart, 0)
+
+        #print "The value at this point is " + pointValue
+        #while loop ends if pointvalue at the potential point is 2, or good habitat
+        placementValue = pointValue
+
+
+      #assign random coordinates within Austria to Wolf
+      coordinate = self.the_geom.coordinate
+      coordinate.x = xStart
+      coordinate.y = yStart
+
+      #assign sex
+      coin = Random.uniform.nextIntFromTo(0,1)
+      if coin == 0:
+        self.sex = "female"
+
+      print self.name + "(" + self.sex + ") placed at : " + coordinate.x, coordinate.y
+
+      #augments nextWolf variable so that next new wolf is a higher number
+      self.model.nextWolf = self.model.nextWolf + 1
+
+      #decreases the start parameter, stops the while loop when it reaches 0
+      self.model.startingWolvesInAustria = self.model.startingWolvesInAustria - 1

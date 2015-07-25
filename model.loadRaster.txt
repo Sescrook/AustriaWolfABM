@@ -1,0 +1,14 @@
+def loadRaster():
+
+  landCover = ESRIRaster(self.inputDir, "aus_suitab")
+  self.addRaster("aus_suitab", landCover)
+  print "Suitability raster has been loaded"
+
+  tracking = ESRIRaster(self.outputDir, "tracking")
+  self.addRaster("tracking", tracking)
+  print "Tracking data has been loaded"
+
+  packs = ESRIRaster(self.outputDir, "packs")
+  self.addRaster("packs", packs)
+  print "Pack raster has been loaded"
+  print

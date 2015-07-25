@@ -1,0 +1,23 @@
+def newWolf():
+
+  #biweekly rate (rate at each time step) calculated from annual rate (newWolfRate parameter)
+  biweeklyRate = self.newWolfRate / 26.0
+
+  #probability of a wolf appearing this tick is derived from biweekly rate according to equation p(t)=1?e^(?rt)
+  euler = 2.71828
+  exponent = -biweeklyRate
+  probNewWolf = 1 - Math.pow(euler, exponent)
+  #print probNewWolf + " = Probability of new Wolf agent this step"
+
+  #draw a random number out of 100
+  draw = Random.uniform.nextDouble()
+  #print draw + " = Random number from 0 to 1 drawn this step"
+
+  #if random number is lower than wolfProb, then nextWolf will appear
+  if probNewWolf > draw:
+
+    #sets newWolf variable as true, which means the next wolf in line will be activated
+    self.newWolf = 1
+    print
+    print "A new wolf will be created"
+  print

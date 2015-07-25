@@ -1,0 +1,37 @@
+def newWolf():
+
+  #probability of new wolf run at model level.
+  #if it is determined new wolf will be created at this step, the following runs:
+
+  if self.model.newWolf == 1:
+
+    #checks to see if current wolf is the next in line to be "turned on"
+    if self.name == "wolf" + str(self.model.nextWolf):
+
+      #if so, self.alive set to 1, meaning the wolf comes alive
+      #print "...creating new wolf agent"
+      self.alive = 1
+
+      #set location of new wolf in NW Slovenia
+      #gets random x and y within coordinates of NW Slovenia
+      xStart = Random.uniform.nextDoubleFromTo(4504546, 4708102)
+      yStart = Random.uniform.nextDoubleFromTo(2605076, 2610540)
+
+      #assign random coordinates in NW Slovenia to newWolf
+      coordinate = self.the_geom.coordinate
+      coordinate.x = xStart
+      coordinate.y = yStart
+
+      #assign sex
+      coin = Random.uniform.nextIntFromTo(0,1)
+      if coin == 0:
+        self.sex = "female"
+
+      print self.name + "(" + self.sex +  ") enters the study area at " + xStart, yStart
+      print
+
+      #resets the newWolf variable back to zero, to see if new wolf is created at next time step
+      self.model.newWolf = 0
+
+      #augments nextWolf variable so that next new wolf is a higher number
+      self.model.nextWolf = self.model.nextWolf + 1
