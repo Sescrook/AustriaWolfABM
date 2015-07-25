@@ -1,0 +1,75 @@
+def establishTerritory():
+
+  if self.foundMate == 1 and self.sex == "male":
+    packs = self.model.getRaster("packs")
+    print
+    coord = self.the_geom.coordinate
+    x = coord.x
+    y = coord.y
+
+    #find the pixel value on the packs raster of the male wolf
+    print self.name + " checks territory surrounding: " + x, y
+    pointPixel = packs.mapToPixel(x, y, 0)
+    print "The pixel value is " + pointPixel.x, pointPixel.y
+    intPointX = int(pointPixel.x)
+    intPointY = int(pointPixel.y)
+    print "The int version of the pixel value is " + intPointX, intPointY
+
+    #compute the number of pixels of one side (dimensions of habitat box)
+    halfLengthPixels = int(Math.sqrt(self.model.packArea)*5)
+    print halfLengthPixels + " pixels to be added and subtracted to location"
+
+    #findcorners of habitat box
+    habXmin = intPointX - halfLengthPixels
+    habXmax = intPointX + halfLengthPixels
+    habYmin = intPointY - halfLengthPixels
+    habYmax = intPointY + halfLengthPixels
+    print "Pack box will go from x " + habXmin + " to " + habXmax
+    print "Pack box will go from y " + habYmin + " to " + habYmax
+
+    #opens suitability raster
+    suitabilityRas = self.model.getRaster("aus_suitab")
+
+    #counter variables for total number of pixels and number of suitable habitat pixels
+    suitablePixels = 0
+    totalPixels = 0
+
+    #cycle through all pixels in the square to determine if they are suitable habitat pixels
+    for i in range(habXmin, habXmax + 1):
+      for j in range(habYmin, habYmax + 1):
+        pixelValue = suitabilityRas.getPixelValue(i, j, 0)
+        if pixelValue == 2:
+          suitablePixels = suitablePixels + 1
+        totalPixels = totalPixels + 1
+        print "Pixel value at point (" + i, j + ") is: " + pixelValue
+
+    #establish % of suitable habitat
+    print suitablePixels + " suitable pixels"
+    print totalPixels + " total pixels"
+    doubleSuitablePixels = double(suitablePixels)
+    doubleTotalPixels = double(totalPixels)
+    goodHabitatPercent = doubleSuitablePixels / doubleTotalPixels
+    print goodHabitatPercent + " is the proportion of good habitat surrounding " + self.name
+
+    #compare good habitat found vs. required proportion of good habitat (model parameter)
+    if goodHabitatPercent > self.model.percentGoodHabitatForPack:
+      print
+      print "PACK WILL BE FORMED HERE"
+      print "CHANGING 'pack' RASTER VALUES"
+      print
+      counter = 1
+
+      for i in range(habXmin, habXmax + 1):
+        for j in range(habYmin, habYmax + 1):
+          print counter + " pixel of: " + totalPixels
+          counter = counter+1
+          print "Changing pixel value at point (" + i, j + ") to 4"
+          packs.writePixelValue(4, i, j, 0)
+    else:
+      print
+      print "Not enough good habitat"
+      print "Pair disbands for now"
+      self.foundMate = 0
+      #for loop through the other wolves looking for self.mateName
+      #set wolf.foundMate to 0
+      print

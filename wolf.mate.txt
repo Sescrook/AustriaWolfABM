@@ -29,8 +29,6 @@ def mate():
 
           #if wolves are close enough, draw random to see if they do based on mate probability
           randomDraw = Random.uniform.nextDoubleFromTo(0,1)
-          print randomDraw
-          print self.model.mateProbability
           if randomDraw < self.model.mateProbability:
 
             #if so, wolves mate
@@ -40,6 +38,6 @@ def mate():
             wolf.mateName = self.name
             print
             print "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!BOW CHICA BOW WOW!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-            print self.name + " and " + wolf.name + " find each other and decide to mate"
+            print self.name + " and " + wolf.name + " decide to mate and look for territory"
             print "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
             print
