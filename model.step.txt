@@ -1,0 +1,5 @@
+def step():
+  print
+  print "TICK: " + self.step
+  self.step = self.step + 1
+  print

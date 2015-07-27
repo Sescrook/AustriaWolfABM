@@ -1,0 +1,2 @@
+def writeAgents():
+  self.writeAgents(self.wolves, "C:\Austria\WolfModel\Model\Output\HundredWolvesCopy.shp")

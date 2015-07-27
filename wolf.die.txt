@@ -11,8 +11,18 @@ def die():
 
     #print draw + " = Random number from 0 to 1 drawn to determine death for " + self.name
 
-    if probDeath > draw:
+    if draw < probDeath:
 
       #set wolf to 2 (or dead), it no longer moves.
       self.alive = 2
       print self.name + " dies"
+
+    #if wolf is out of bounds it has a 50% chance of dying
+    elif self.outOfBounds == 1:
+      draw2 = Random.uniform.nextDoubleFromTo(0,1)
+      if draw2 < .25:
+        self.alive = 2
+        print self.name + " leaves the study area and/or dies"
+      else:
+        self.outOfBounds = 0
+        print self.name + " leaves the study area but may return"

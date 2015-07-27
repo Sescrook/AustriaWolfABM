@@ -1,0 +1,11 @@
+GISModel: step
+for all Wolf: step
+GISModel: newWolf
+for all Wolf: newWolf
+for all Wolf: move
+for all Wolf: mate
+for all Wolf: establishTerritory
+for all Wolf: die
+for all Wolf: stepEndReport
+GISModel: writeAgents
+GISModel: updateDisplay

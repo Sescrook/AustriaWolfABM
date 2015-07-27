@@ -1,5 +1,5 @@
 def move():
-  if self.alive == 1:
+  if self.alive == 1 and self.establishPack != 1:
 
     hourlyMeanMovement = self.model.meanDailyDispersal/24
     hourlySD = self.model.sdDailyDispersal/24
@@ -30,10 +30,10 @@ def move():
       #print pointValue + " suitability at possible movement spot"
 
       #wolf decides whether to move based on what the hypothetical move area is
-      #5% chance of moving to poor habitat
-      #50% chance of moving in marginal habitat
+      #10% chance of moving to poor habitat
+      #75% chance of moving in marginal habitat
       #95% chance of moving to good habitat
-      #50% change of moving out of bounds
+      #75% chance of moving out of bounds
       #otherwise, no movement
       if pointValue == 0:
         random = Random.uniform.nextDoubleFromTo(0,1)
@@ -55,7 +55,14 @@ def move():
           #print "wolf finds good habitat and moves to it"
       if pointValue == -1:
         random = Random.uniform.nextDoubleFromTo(0,1)
-        if random < .5:
+        if random < .70:
           coordinate.x = coordinate.x + xAmt
           coordinate.y = coordinate.y + yAmt
           #print "Wolf is headed out of the study area, at a 50% chance"
+
+    #check of where the wolf ended up
+    coordinate = self.the_geom.coordinate
+    endPoint = suitability.getPixelValueAtMap(coordinate.x, coordinate.y, 0)
+    print self.name + " ends up in habitat type: " + endPoint
+    if endPoint == -1:
+      self.outOfBounds = 1

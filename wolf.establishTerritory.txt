@@ -59,6 +59,12 @@ def establishTerritory():
       print
       counter = 1
 
+      #set establishPack to 1 for self and for mate
+      self.establishPack = 1
+      for wolf as Wolf in self.model.wolves:
+        if wolf.name == self.mateName:
+          wolf.establishPack = 1
+
       for i in range(habXmin, habXmax + 1):
         for j in range(habYmin, habYmax + 1):
           print counter + " pixel of: " + totalPixels
@@ -69,7 +75,15 @@ def establishTerritory():
       print
       print "Not enough good habitat"
       print "Pair disbands for now"
+
+      #if there isn't enough good habitat: mated pair go their separate ways (though will be nearby and possibly mate again)
+      #foundMate variables are set to zero
       self.foundMate = 0
+      print self.name + " foundMate variable set to 0"
+      for wolf as Wolf in self.model.wolves:
+        if wolf.name == self.mateName:
+          wolf.foundMate = 0
+          print wolf.name + " foundMate variable set to 0"
       #for loop through the other wolves looking for self.mateName
       #set wolf.foundMate to 0
       print
