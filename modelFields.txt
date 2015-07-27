@@ -1,18 +1,20 @@
 Fields (model)
 inputDir	java.lang.String	"C:\Austria\WolfModel\Model\Input"	true	false
-mortRate	double	0	true	true
-nextWolf	int	0	true	false
-newWolfRate	int	0	true	true
+mortRate	double	.76	true	true
+nextWolf	int	1	true	false
+newWolfRate	int	3	true	true
 newWolf	int	0	true	false
 step	int	1	true	false
 outputDir	java.lang.String	"C:\Austria\WolfModel\Model\Output"	true	false
-startingWolvesInAustria	int	10	true	true
-meanDailyDispersal	int	50000	true	true
-sdDailyDispersal	int	2000	true	true
-mateSearchRadius	int	25000	true	true
+startingWolvesInAustria	int	3	true	true
+meanDailyDispersal	int	15000	true	true
+sdDailyDispersal	int	5000	true	true
+mateSearchRadius	int	10000	true	true
 mateProbability	double	1.0	true	true
-packArea	int	40	true	true
-percentGoodHabitatForPack	double	.75	true	true
+packArea	int	100	true	true
+percentGoodHabitatForPack	double	.8	true	true
+totalLiving	int	0	true	false
+numPacks	int	0	true	false
 
 Field (wolf)
 alive	int	0	true	false

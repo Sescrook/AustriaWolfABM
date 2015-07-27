@@ -5,7 +5,10 @@ def move():
     hourlySD = self.model.sdDailyDispersal/24
 
     suitability = self.model.getRaster("aus_suitab")
-    for i in range(0, 167):
+
+    #movement decision undertaken every hour
+    #336 hours in two weeks or one time step
+    for i in range(0, 335):
       #choose hourly movement amount
       Random.createNormal(hourlyMeanMovement, hourlySD)
       xAmt = Random.normal.nextDouble()

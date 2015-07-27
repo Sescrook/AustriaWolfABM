@@ -1,0 +1,22 @@
+def trackWolves():
+  print
+
+  #checks out raster
+  tracking = self.getRaster("tracking")
+  for wolf as Wolf in self.wolves:
+
+    #cycles through alive wolves to write value to the pixel they are on.
+    if wolf.alive == 1:
+      coord = wolf.the_geom.coordinate
+      coordX = coord.x
+      coordY = coord.y
+
+      #converts the map coordinates to grid
+      pointPixel = tracking.mapToPixel(coordX, coordY, 0)
+
+      #COULD INSERT HERE MORE CUSTOMIZATION OF THE VALUE TO WRITE
+      #Eg. COULD WRITE WOLF # instead of the same #4 for all. Or could even include time stamp.
+
+      #write pixel to raster
+      tracking.writePixelValue(4, int(pointPixel.x), int(pointPixel.y), 0)
+    

@@ -1,0 +1,15 @@
+def summaryStats():
+
+  livingWolves = 0
+  packs = 0
+  for wolf as Wolf in self.wolves:
+    if wolf.alive == 1:
+      livingWolves = livingWolves + 1
+      self.totalLiving = self.totalLiving + 1
+  print
+  print "---------------------------------------------------------------------------------------"
+  print "At the end of this step the number of living wolves is:           " + livingWolves
+  print "The running mean of wolves alive at each step is:                 " + double(self.totalLiving)/double(self.step - 1)
+  print "---------------------------------------------------------------------------------------"
+  print "Total number of packs formed:                                     " + self.numPacks
+  print "---------------------------------------------------------------------------------------"
