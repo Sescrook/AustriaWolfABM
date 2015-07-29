@@ -1,8 +1,8 @@
 def establishTerritory():
 
-  if self.foundMate == 1 and self.sex == "male":
-    packs = self.model.getRaster("packs")
+  if self.foundMate == 1 and self.sex == "male" and self.establishPack != 1:
     print
+    packs = self.model.getRaster("packs")
     coord = self.the_geom.coordinate
     x = coord.x
     y = coord.y
@@ -61,16 +61,16 @@ def establishTerritory():
 
       #set establishPack to 1 for self and for mate
       self.establishPack = 1
+      self.model.numPacks = self.model.numPacks + 1
       for wolf as Wolf in self.model.wolves:
         if wolf.name == self.mateName:
           wolf.establishPack = 1
 
       for i in range(habXmin, habXmax + 1):
         for j in range(habYmin, habYmax + 1):
-          print counter + " pixel of: " + totalPixels
           counter = counter+1
-          print "Changing pixel value at point (" + i, j + ") to 4"
-          packs.writePixelValue(4, i, j, 0)
+          print "Changing pixel value at point (" + i, j + ") to 4 (pixel " + counter + " of " + totalPixels + ")"
+          packs.writePixelValue(4, int(i), int(j), 0)
     else:
       print
       print "Not enough good habitat"
