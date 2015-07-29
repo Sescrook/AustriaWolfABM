@@ -2,14 +2,16 @@ def establishTerritory():
 
   if self.foundMate == 1 and self.sex == "male" and self.establishPack != 1:
     print
-    packs = self.model.getRaster("packs")
+    #opens suitability raster
+    suitabilityRas = self.model.getRaster("aus_suitab")
+
     coord = self.the_geom.coordinate
     x = coord.x
     y = coord.y
 
     #find the pixel value on the packs raster of the male wolf
     print self.name + " checks territory surrounding: " + x, y
-    pointPixel = packs.mapToPixel(x, y, 0)
+    pointPixel = suitabilityRas.mapToPixel(x, y, 0)
     print "The pixel value is " + pointPixel.x, pointPixel.y
     intPointX = int(pointPixel.x)
     intPointY = int(pointPixel.y)
@@ -27,8 +29,6 @@ def establishTerritory():
     print "Pack box will go from x " + habXmin + " to " + habXmax
     print "Pack box will go from y " + habYmin + " to " + habYmax
 
-    #opens suitability raster
-    suitabilityRas = self.model.getRaster("aus_suitab")
 
     #counter variables for total number of pixels and number of suitable habitat pixels
     suitablePixels = 0
@@ -68,6 +68,7 @@ def establishTerritory():
 
       for i in range(habXmin, habXmax + 1):
         for j in range(habYmin, habYmax + 1):
+          packs = self.model.getRaster("packs")
           counter = counter+1
           print "Changing pixel value at point (" + i, j + ") to 4 (pixel " + counter + " of " + totalPixels + ")"
           packs.writePixelValue(4, int(i), int(j), 0)
