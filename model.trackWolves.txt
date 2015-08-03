@@ -11,12 +11,16 @@ def trackWolves():
       coordX = coord.x
       coordY = coord.y
 
-      #converts the map coordinates to grid
-      pointPixel = tracking.mapToPixel(coordX, coordY, 0)
+      #check to make sure they are on the suitability map at all
+      suitability = self.getRaster("aus_suitab")
+      pointValue = suitability.getPixelValueAtMap(coordX, coordY, 0)
+      if pointValue != -1:
 
-      #COULD INSERT HERE MORE CUSTOMIZATION OF THE VALUE TO WRITE
-      #Eg. COULD WRITE WOLF # instead of the same #4 for all. Or could even include time stamp.
+        #converts the map coordinates to grid
+        pointPixel = tracking.mapToPixel(coordX, coordY, 0)
 
-      #write pixel to raster
-      tracking.writePixelValue(4, int(pointPixel.x), int(pointPixel.y), 0)
-    
+        #COULD INSERT HERE MORE CUSTOMIZATION OF THE VALUE TO WRITE
+        #Eg. COULD WRITE WOLF # instead of the same #4 for all. Or could even include time stamp.
+
+        #write pixel to raster
+        tracking.writePixelValue(4, int(pointPixel.x), int(pointPixel.y), 0)
