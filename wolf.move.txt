@@ -5,10 +5,7 @@ def move():
     hourlySD = self.model.sdDailyDispersal/24
 
     suitability = self.model.getRaster("aus_suitab")
-
-    #movement decision undertaken every hour
-    #336 hours in two weeks or one time step
-    for i in range(0, 335):
+    for i in range(0, 336):
       #choose hourly movement amount
       Random.createNormal(hourlyMeanMovement, hourlySD)
       xAmt = Random.normal.nextDouble()
@@ -33,10 +30,10 @@ def move():
       #print pointValue + " suitability at possible movement spot"
 
       #wolf decides whether to move based on what the hypothetical move area is
-      #10% chance of moving to poor habitat
+      #5% chance of moving to poor habitat
       #75% chance of moving in marginal habitat
       #95% chance of moving to good habitat
-      #75% chance of moving out of bounds
+      #70% chance of moving out of bounds
       #otherwise, no movement
       if pointValue == 0:
         random = Random.uniform.nextDoubleFromTo(0,1)

@@ -17,7 +17,7 @@ def die():
       self.alive = 2
       print self.name + " dies"
 
-    #if wolf is out of bounds it has a 50% chance of dying
+    #if wolf is out of bounds it has a 25% chance of dying
     elif self.outOfBounds == 1:
       draw2 = Random.uniform.nextDoubleFromTo(0,1)
       if draw2 < .25:
