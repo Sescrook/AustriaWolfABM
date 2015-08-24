@@ -6,15 +6,19 @@ newWolfRate	int	3	true	true
 newWolf	int	0	true	false
 step	int	1	true	false
 outputDir	java.lang.String	"C:\Austria\WolfModel\Model\Output"	true	false
-startingWolvesInAustria	int	5	true	true
-meanDailyDispersal	int	18000	true	true
-sdDailyDispersal	int	18000	true	true
-mateSearchRadius	int	30000	true	true
+startingWolvesInAustria	int	8	true	true
+meanDailyDispersal	int	19370	true	true
+sdDailyDispersal	int	19000	true	true
+mateSearchRadius	int	39200	true	true
 mateProbability	double	1.0	true	true
 packArea	int	234	true	true
-percentGoodHabitatForPack	double	.8	true	true
+percentGoodHabitatForPack	double	.75	true	true
 totalLiving	int	0	true	false
 numPacks	int	0	true	false
+probDinaric	double	.5	true	true
+probAlpine	double	.25	true	true
+probCarpathian	double	.25	true	true
+probFemale	double	.25	true	true
 
 Field (wolf)
 alive	int	0	true	false
@@ -23,3 +27,4 @@ establishPack	int	0	true	false
 sex	java.lang.String	male	true	false
 outOfBounds	int	0	true	false
 mateName	java.lang.String	"none"	true	false
+origin	java.lang.String	"none"	true	false

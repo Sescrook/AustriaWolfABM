@@ -12,22 +12,48 @@ def newWolf():
       #print "...creating new wolf agent"
       self.alive = 1
 
-      #set location of new wolf in NW Slovenia
-      #gets random x and y within coordinates of NW Slovenia
-      xStart = Random.uniform.nextDoubleFromTo(4504546, 4708102)
-      yStart = Random.uniform.nextDoubleFromTo(2605076, 2610540)
+      #find where wolf starts from according to parameter for start location probability
+      startLoc = Random.uniform.nextDouble()
 
-      #assign random coordinates in NW Slovenia to newWolf
-      coordinate = self.the_geom.coordinate
-      coordinate.x = xStart
-      coordinate.y = yStart
+      if startLoc < self.model.probDinaric:
+        #set location of new wolf in NW Slovenia, random X Y coordinates
+        xStart = Random.uniform.nextDoubleFromTo(4504546, 4708102)
+        yStart = Random.uniform.nextDoubleFromTo(2605076, 2610540)
+
+        #assign random coordinates in NW Slovenia to newWolf
+        coordinate = self.the_geom.coordinate
+        coordinate.x = xStart
+        coordinate.y = yStart
+        self.origin = "dinaric"
+
+      elif startLoc > self.model.probDinaric and startLoc < self.model.probDinaric + self.model.probAlpine:
+        #set location of new wolf in SW Voralsberg, random X Y coordinates
+        xStart = Random.uniform.nextDoubleFromTo(4297446, 4303658)
+        yStart = Random.uniform.nextDoubleFromTo(2634851, 2682824)
+
+        #assign random coordinates in SW Voralsberg to newWolf
+        coordinate = self.the_geom.coordinate
+        coordinate.x = xStart
+        coordinate.y = yStart
+        self.origin = "alpine"
+
+      else:
+        #set location of new wolf in NE Austria (Czech border), random X Y coordinates
+        xStart = Random.uniform.nextDoubleFromTo(4836645, 4845424)
+        yStart = Random.uniform.nextDoubleFromTo(2818276, 2884122)
+
+        #assign random coordinates in NE Austria to newWolf
+        coordinate = self.the_geom.coordinate
+        coordinate.x = xStart
+        coordinate.y = yStart
+        self.origin = "carpathian"
 
       #assign sex
-      coin = Random.uniform.nextIntFromTo(0,1)
-      if coin == 0:
+      coin = Random.uniform.nextDouble()
+      if coin < self.model.probFemale:
         self.sex = "female"
 
-      print self.name + "(" + self.sex +  ") enters the study area at " + xStart, yStart
+      print self.name + "(" + self.sex +  ") from the " + self.origin + " population, enters the study area"
       print
 
       #resets the newWolf variable back to zero, to see if new wolf is created at next time step
