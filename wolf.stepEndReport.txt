@@ -1,10 +1,10 @@
 def stepEndReport():
 
   if self.alive == 1 and self.establishPack != 1:
-    print self.name + "(" + self.sex + ") is alive"
+    print self.name + "(" + self.sex, self.origin + ") is alive"
   elif self.alive == 1 and self.establishPack == 1:
-    print self.name + "(" + self.sex + ") is alive, and has established a pack with: " + self.mateName
+    print self.name + "(" + self.sex, self.origin + ") is alive, and has established a pack with: " + self.mateName
   elif self.alive == 2 and self.establishPack == 1:
-    print self.name + "(" + self.sex + ") is dead, after having established a pack with: " + self.mateName
+    print self.name + "(" + self.sex, self.origin + ") is dead, after having established a pack with: " + self.mateName
   elif self.alive == 2:
-    print self.name + "(" + self.sex + ") is dead"
+    print self.name + "(" + self.sex, self.origin + ") is dead"

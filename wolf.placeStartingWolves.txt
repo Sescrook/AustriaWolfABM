@@ -34,11 +34,11 @@ def placeStartingWolves():
       coordinate.y = yStart
 
       #assign sex
-      coin = Random.uniform.nextIntFromTo(0,1)
-      if coin == 0:
+      coin = Random.uniform.nextDouble()
+      if coin < self.model.probFemale:
         self.sex = "female"
 
-      print self.name + "(" + self.sex + ") placed at : " + coordinate.x, coordinate.y
+      print self.name + "(" + self.sex, self.origin + ") placed at : " + coordinate.x, coordinate.y
 
       #augments nextWolf variable so that next new wolf is a higher number
       self.model.nextWolf = self.model.nextWolf + 1
